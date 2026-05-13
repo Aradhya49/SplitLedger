@@ -1,7 +1,7 @@
 const token =
   localStorage.getItem("token");
 
-const BASE_URL = "https://splitledger-backend-u7lw.onrender.com/expenses";
+const BASE_URL = "https://splitledger-backend-u7lw.onrender.com";
 
 export async function getExpenses() {
 
