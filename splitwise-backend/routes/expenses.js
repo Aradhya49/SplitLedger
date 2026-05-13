@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 const Expense =
-  require("../models/Expense");
+  require("../models/expense.js");
 
 /* =========================
    GET ALL EXPENSES
@@ -100,7 +100,7 @@ router.post(
 ========================= */
 
 router.delete(
-  "/",
+  "/:id",
   authMiddleware,
   async (req, res) => {
   try {
@@ -131,7 +131,7 @@ router.delete(
 ========================= */
 
 router.put(
-  "/",
+  "/:id",
   authMiddleware,
   async (req, res) => {
 
