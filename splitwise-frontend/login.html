@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Login</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+</head>
+
+<body>
+
+  <div class="container auth-container">
+
+    <h1>Login</h1>
+
+    <div class="form">
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+      >
+
+      <button id="loginBtn">
+        Login
+      </button>
+
+      <p id="error"></p>
+
+      <p class="auth-link">
+
+        Don't have account?
+
+        <a href="register.html">
+          Register
+        </a>
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  setTimeout(() => {
+
+    toast.classList.remove(
+      "show"
+    );
+
+  }, 2500);
+
+}
+
+const BASE_URL =
+  "http://localhost:5000/auth";
+
+document
+  .getElementById("loginBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const email =
+        document
+          .getElementById("email")
+          .value;
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+      const error =
+        document
+          .getElementById("error");
+
+      if (
+        !email ||
+        !password
+      ) {
+
+        error.textContent =
+          "All fields required";
+
+        return;
+
+      }
+
+      try {
+
+        const response =
+          await fetch(
+
+            `${BASE_URL}/login`,
+
+            {
+
+              method: "POST",
+
+              headers: {
+
+                "Content-Type":
+                  "application/json"
+
+              },
+
+              body: JSON.stringify({
+
+                email,
+
+                password
+
+              })
+
+            }
+
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+
+          error.textContent =
+            data.message;
+
+          return;
+
+        }
+
+        /* =========================
+           SAVE TOKEN
+        ========================= */
+
+        localStorage.setItem(
+          "token",
+          data.token
+        );
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify(data.user)
+        );
+
+        error.textContent = "";
+
+        showToast(
+          "Login successful ✅"
+        );
+
+        setTimeout(() => {
+
+          window.location.href =
+            "index.html";
+
+        }, 1200);
+
+      }
+
+      catch (err) {
+
+        error.textContent =
+          "Something went wrong";
+
+      }
+
+});
+
+</script>
+
+<div id="toast"></div>
+
+</body>
+
+</html>

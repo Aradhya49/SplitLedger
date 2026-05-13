@@ -1,0 +1,25 @@
+[
+  {
+    "id": "684fa3e4-ddae-412c-b03e-af854b517af6",
+    "title": "cafe",
+    "amount": 4000,
+    "people": [
+      "aradhya",
+      "ananya"
+    ],
+    "paidBy": "ananya",
+    "timestamp": "2026-05-12T22:12:02.920Z",
+    "category": "Food"
+  },
+  {
+    "id": "a96723de-526c-443a-a460-7d6b4de3b69e",
+    "title": "party",
+    "amount": 5000,
+    "people": [
+      "aradhya",
+      "ananya"
+    ],
+    "paidBy": "aradhya",
+    "timestamp": "2026-05-12T22:24:29.126Z"
+  }
+]
