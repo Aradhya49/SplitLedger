@@ -1,4 +1,4 @@
-const authMiddleware = require("../middleware/authMiddleware.js");
+const authMiddleware = require("../middleware/authmiddleware.js");
 
 const express = require("express");
 
