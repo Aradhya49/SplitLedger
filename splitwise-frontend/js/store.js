@@ -16,7 +16,7 @@ export async function getExpenses() {
 
         headers: {
 
-          Authorization: token
+          Authorization: `Bearer ${token}`
 
         }
 
@@ -61,7 +61,7 @@ export async function addExpense(expense) {
         "Content-Type":
           "application/json",
 
-        Authorization: token
+        Authorization: `Bearer ${token}`
 
       },
 
@@ -107,7 +107,7 @@ export async function deleteExpense(id) {
 
         headers: {
 
-          Authorization: token
+          Authorization: `Bearer ${token}`
 
         }
 
@@ -158,7 +158,7 @@ export async function updateExpense(
           "Content-Type":
             "application/json",
 
-          Authorization: token
+          Authorization: `Bearer ${token}`
 
         },
 
