@@ -4,6 +4,12 @@ SplitLedger is a full-stack expense management and expense splitting web applica
 
 ---
 
+## Live Demo
+
+https://splitledger-app.netlify.app/login.html
+
+
+
 ## Introduction
 
 This project was built as a learning-focused full-stack application to strengthen concepts of frontend-backend integration, authentication, responsive UI design, and database management.
@@ -77,6 +83,7 @@ splitledger/
 
 ## Screenshots
 
+
 ## Login Page
 
 ![Login Page](screenshots/login_page.png)
@@ -91,13 +98,13 @@ splitledger/
 
 ## Dashboard - Light Mode
 
-![Dashboard Light Mode](screenshots/dashboard_lightmode.png)
+![Dashboard Light Mode](screenshots/dashboard_light_mode.png)
 
 ---
 
 ## Dashboard - Dark Mode
 
-![Dashboard Dark Mode](screenshots/dashboard_darkmode.png)
+![Dashboard Dark Mode](screenshots/dashboard_dark_mode.png)
 
 ---
 
@@ -119,9 +126,15 @@ splitledger/
 
 ---
 
-## Delete Expense Modal
+## Delete Expense
 
 ![Delete Expense](screenshots/delete_expense.png)
+
+---
+
+## Mobile View
+
+![Mobile View](screenshots/mobile_view.png)
 
 ---
 
@@ -135,11 +148,6 @@ splitledger/
 
 ![Customization](screenshots/customization_of_choices.png)
 
----
-
-## Mobile Responsive View
-
-![Mobile View](screenshots/mobile_view.png)
 
 
 ## How to Run the Project
