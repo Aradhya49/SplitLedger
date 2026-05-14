@@ -34,7 +34,7 @@ export async function getExpenses() {
     const data =
   await res.json();
 
-return data.reverse();
+return data;
 
   }
 
