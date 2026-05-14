@@ -25,24 +25,30 @@
 
     <h1>Create Account</h1>
 
-    <div class="form">
+    <div
+      class="form"
+      autocomplete="off"
+    >
 
       <input
         type="text"
         id="name"
         placeholder="Name"
+        autocomplete="off"
       >
 
       <input
         type="email"
         id="email"
         placeholder="Email"
+        autocomplete="off"
       >
 
       <input
         type="password"
         id="password"
         placeholder="Password"
+        autocomplete="new-password"
       >
 
       <button id="registerBtn">
@@ -67,7 +73,7 @@
 
   <script>
 
-    function showToast(message) {
+function showToast(message) {
 
   const toast =
     document.getElementById(
@@ -78,8 +84,8 @@
     message;
 
   toast.classList.add(
-      "show"
-    );
+    "show"
+  );
 
   setTimeout(() => {
 
@@ -91,116 +97,116 @@
 
 }
 
-    const BASE_URL =
-      "https://splitledger-backend-u7lw.onrender.com/auth";
+const BASE_URL =
+  "https://splitledger-backend-u7lw.onrender.com/auth";
 
+document
+  .getElementById("registerBtn")
+  .addEventListener(
+    "click",
+    async () => {
 
+      const name =
+        document
+          .getElementById("name")
+          .value;
 
-    document
-      .getElementById("registerBtn")
-      .addEventListener(
-        "click",
-        async () => {
+      const email =
+        document
+          .getElementById("email")
+          .value;
 
-          const name =
-            document
-              .getElementById("name")
-              .value;
+      const password =
+        document
+          .getElementById("password")
+          .value;
 
-          const email =
-            document
-              .getElementById("email")
-              .value;
+      const error =
+        document
+          .getElementById("error");
 
-          const password =
-            document
-              .getElementById("password")
-              .value;
+      if (
+        !name ||
+        !email ||
+        !password
+      ) {
 
-          const error =
-            document
-              .getElementById("error");
+        error.textContent =
+          "All fields required";
 
-          if (
-            !name ||
-            !email ||
-            !password
-          ) {
+        return;
 
-            error.textContent =
-              "All fields required";
+      }
 
-            return;
+      try {
 
-          }
+        const response =
+          await fetch(
 
-          try {
+            `${BASE_URL}/register`,
 
-            const response =
-              await fetch(
+            {
 
-                `${BASE_URL}/register`,
+              method: "POST",
 
-                {
+              headers: {
 
-                  method: "POST",
+                "Content-Type":
+                  "application/json"
 
-                  headers: {
+              },
 
-                    "Content-Type":
-                      "application/json"
+              body: JSON.stringify({
 
-                  },
+                name,
 
-                  body: JSON.stringify({
+                email,
 
-                    name,
+                password
 
-                    email,
-
-                    password
-
-                  })
-
-                }
-
-              );
-
-            const data =
-              await response.json();
-
-            if (!response.ok) {
-
-              error.textContent =
-                data.message;
-
-              return;
+              })
 
             }
 
-            showToast(
-  "Registration successful 🎉"
-);
+          );
 
+        const data =
+          await response.json();
 
-     setTimeout(() => {
-            window.location.href =
-              "login.html";
+        if (!response.ok) {
 
-          }, 1200);
+          error.textContent =
+            data.message;
+
+          return;
+
         }
 
-          catch (err) {
+        showToast(
+          "Registration successful 🎉"
+        );
 
-            error.textContent =
-              "Something went wrong";
+        setTimeout(() => {
 
-          }
+          window.location.href =
+            "login.html";
 
-      });
+        }, 1200);
+
+      }
+
+      catch (err) {
+
+        error.textContent =
+          "Something went wrong";
+
+      }
+
+});
 
   </script>
-<div id="toast"></div>
+
+  <div id="toast"></div>
 
 </body>
 

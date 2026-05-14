@@ -337,10 +337,56 @@ export function renderStats(
   /* TRANSACTIONS */
 
   document.getElementById(
-    "totalTransactions"
-  ).textContent =
+  "totalEntries"
+).textContent =
 
-    expenses.length;
+  expenses.length;
+
+  /* THIS MONTH */
+
+const now = new Date();
+
+const thisMonthTotal =
+  expenses
+    .filter(exp => {
+
+      const date =
+        new Date(exp.createdAt);
+
+      return (
+
+        date.getMonth()
+
+        ===
+
+        now.getMonth()
+
+        &&
+
+        date.getFullYear()
+
+        ===
+
+        now.getFullYear()
+
+      );
+
+    })
+
+    .reduce(
+
+      (sum, exp) =>
+        sum + exp.amount,
+
+      0
+
+    );
+
+document.getElementById(
+  "thisMonth"
+).textContent =
+
+  `₹${thisMonthTotal}`;
 
   /* TOP CATEGORY */
 
@@ -348,9 +394,14 @@ export function renderStats(
 
   expenses.forEach(exp => {
 
-    categories[exp.category] =
+       const category =
+    exp.category
+      .trim()
+      .toLowerCase();
 
-      (categories[exp.category] || 0)
+  categories[category] =
+
+      (categories[category] || 0)
 
       + exp.amount;
 

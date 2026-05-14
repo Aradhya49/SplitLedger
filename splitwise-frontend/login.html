@@ -25,18 +25,23 @@
 
     <h1>Login</h1>
 
-    <div class="form">
+    <div
+      class="form"
+      
+    >
 
       <input
         type="email"
         id="email"
         placeholder="Email"
+        autocomplete="username"
       >
 
       <input
         type="password"
         id="password"
         placeholder="Password"
+        autocomplete="on"
       >
 
       <button id="loginBtn">
@@ -161,10 +166,6 @@ document
           return;
 
         }
-
-        /* =========================
-           SAVE TOKEN
-        ========================= */
 
         localStorage.setItem(
           "token",
