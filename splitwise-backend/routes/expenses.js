@@ -24,7 +24,7 @@ router.get(
     userId: req.userId
 
   })
-  .sort({ timestamp: -1 });
+  .sort({ createdAt: -1 });
 
     res.json(expenses);
 

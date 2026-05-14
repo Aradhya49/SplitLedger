@@ -20,7 +20,7 @@ export function renderExpenses(expenses) {
             <small class="expense-date">
 
   ${new Date(
-    exp.timestamp
+    exp.createdAt
   ).toLocaleString()}
 
 </small><br>
@@ -334,59 +334,68 @@ export function renderStats(
 
     `₹${total}`;
 
-  /* TRANSACTIONS */
+  /* TOTAL ENTRIES */
 
   document.getElementById(
-  "totalEntries"
-).textContent =
+    "totalEntries"
+  ).textContent =
 
-  expenses.length;
+    expenses.length;
 
   /* THIS MONTH */
 
-const now = new Date();
+  const now =
+    new Date();
 
-const thisMonthTotal =
-  expenses
-    .filter(exp => {
+  const thisMonthTotal =
 
-      const date =
-        new Date(exp.createdAt);
+    expenses
 
-      return (
+      .filter(exp => {
 
-        date.getMonth()
+        if (!exp.createdAt)
+          return false;
 
-        ===
+        const date =
+          new Date(
+            exp.createdAt
+          );
 
-        now.getMonth()
+        return (
 
-        &&
+          date.getMonth()
 
-        date.getFullYear()
+          ===
 
-        ===
+          now.getMonth()
 
-        now.getFullYear()
+          &&
+
+          date.getFullYear()
+
+          ===
+
+          now.getFullYear()
+
+        );
+
+      })
+
+      .reduce(
+
+        (sum, exp) =>
+
+          sum + exp.amount,
+
+        0
 
       );
 
-    })
+  document.getElementById(
+    "monthlyExpense"
+  ).textContent =
 
-    .reduce(
-
-      (sum, exp) =>
-        sum + exp.amount,
-
-      0
-
-    );
-
-document.getElementById(
-  "thisMonth"
-).textContent =
-
-  `₹${thisMonthTotal}`;
+    `₹${thisMonthTotal}`;
 
   /* TOP CATEGORY */
 
@@ -394,16 +403,22 @@ document.getElementById(
 
   expenses.forEach(exp => {
 
-       const category =
-    exp.category
-      .trim()
-      .toLowerCase();
+    if (!exp.category)
+      return;
 
-  categories[category] =
+    const category =
+
+      exp.category
+
+        .trim()
+
+        .toLowerCase();
+
+    categories[category] =
 
       (categories[category] || 0)
 
-      + exp.amount;
+      + 1 ;
 
   });
 
@@ -411,10 +426,14 @@ document.getElementById(
 
   let max = 0;
 
-  for (let category in categories) {
+  for (
+    let category
+    in categories
+  ) {
 
     if (
-      categories[category] > max
+      categories[category]
+      > max
     ) {
 
       max =
